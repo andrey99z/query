@@ -63,6 +63,9 @@ export function query<
   arg3?: UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>
 ): ObservableEx<UseQueryResult<TData, TError>> {
   const parsedOptions = parseQueryArgs(arg1, arg2, arg3);
+
+  // we want to allow query parameters to be observables
+  // so that we can create new query when parameters change
   const queryKeysArray = Array.isArray(parsedOptions.queryKey)
     ? parsedOptions.queryKey
     : [parsedOptions.queryKey];
@@ -70,11 +73,18 @@ export function query<
     isObservable(x) ? x : of(x)
   );
 
+  // here we try to follow the logic in
+  // https://github.com/TanStack/query/blob/beta/src/reactjs/useBaseQuery.ts
+
+  // create internal source for our observable, starting off with 'idle'
   const source$ = new BehaviorSubject<UseQueryResult<TData>>({
     status: "idle",
     data: undefined
   } as UseQueryResult<TData>);
 
+  // use 'deferred' to create a separate observable for each subscriber
+  // this allows us to unsubscribe from QueryObserver
+  // (QueryObserver has its own subscribers tracking mechanism)  
   const deferred = defer(() => {
     let observer: any;
     let unsubscribe: any;
@@ -82,6 +92,10 @@ export function query<
       .pipe(
         map((key, i) => {
           if (i === 0) {
+            // the following we need to do 
+            // only on the first event emitted by our parameters observable
+
+            // create QueryObserver
             observer = new QueryObserver(
               queryClient,
               queryClient.defaultQueryObserverOptions({
@@ -89,17 +103,25 @@ export function query<
                 queryKey: key as any
               })
             );
+
+            // subscribe to notifyManager
+            // it fires every time the query state changes
+            // when it happens, we update the source
             unsubscribe = observer.subscribe(
               notifyManager.batchCalls((state: any) => {
                 source$.next(state);
               })
             );
+
+            // Update result to make sure we did not miss any query updates
+            // between creating the observer and subscribing to it.
             observer.updateResult();
           }
           return key;
         })
       )
       .subscribe((key) => {
+        // here we update observer options every time query params change
         observer.setOptions(
           queryClient.defaultQueryObserverOptions({
             ...parsedOptions,
@@ -108,14 +130,20 @@ export function query<
         );
       });
 
+    // return our observable
     return source$.pipe(
       finalize(() => {
+        // once subscriber unsubscribes, we:
+        // 1. unsubscribe from QueryObserver
         if (unsubscribe) unsubscribe();
+        // 2. unsubscribe from parameters observable
         if (subscription) subscription.unsubscribe();
       })
     );
   }) as ObservableEx<UseQueryResult<TData, TError>>;
 
+  // dirty hack to return these useful functions together with observable
+  // it works but hopefully there is better way
   deferred.getData = () => source$.value.data;
   deferred.getCache = () => queryClient.getQueryCache().getAll();
   deferred.refetch = () => source$.value.refetch();
