@@ -1,6 +1,7 @@
 {
     "files.exclude": {
-        ".angular": true,
-        "**/node_modules": true
+        "**/.angular": true,
+        "**/node_modules": true,
+        "**/dist": true
     }
 }
