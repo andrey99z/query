@@ -3,127 +3,29 @@
   "version": 1,
   "newProjectRoot": "",
   "projects": {
-    "ng-query": {
+    "query": {
       "projectType": "library",
-      "root": "ng-query",
-      "sourceRoot": "ng-query/src",
+      "root": "",
+      "sourceRoot": "src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "ng-query/ng-package.json"
+            "project": "ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "ng-query/tsconfig.lib.prod.json"
+              "tsConfig": "tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "ng-query/tsconfig.lib.json"
+              "tsConfig": "tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
-        }
-      }
-    },
-    "example": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:application": {
-          "strict": true
-        }
-      },
-      "root": "example",
-      "sourceRoot": "example/src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/example",
-            "index": "example/src/index.html",
-            "main": "example/src/main.ts",
-            "polyfills": "example/src/polyfills.ts",
-            "tsConfig": "example/tsconfig.app.json",
-            "assets": [
-              "example/src/favicon.ico",
-              "example/src/assets"
-            ],
-            "styles": [
-              "example/src/styles.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "example/src/environments/environment.ts",
-                  "with": "example/src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "example:build:production"
-            },
-            "development": {
-              "browserTarget": "example:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "example:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "example/src/test.ts",
-            "polyfills": "example/src/polyfills.ts",
-            "tsConfig": "example/tsconfig.spec.json",
-            "karmaConfig": "example/karma.conf.js",
-            "assets": [
-              "example/src/favicon.ico",
-              "example/src/assets"
-            ],
-            "styles": [
-              "example/src/styles.css"
-            ],
-            "scripts": []
-          }
         }
       }
     }
   },
-  "defaultProject": "ng-query"
+  "defaultProject": "query"
 }

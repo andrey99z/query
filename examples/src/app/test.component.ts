@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { query } from "ng-query/src/public-api";
+import { query } from "ngx-react-query";
 import { Subject } from "rxjs";
 import { AppService, User } from "./app.service";
 
