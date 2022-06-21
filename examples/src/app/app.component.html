@@ -1,4 +1,32 @@
-<!--The content below is only a placeholder and can be replaced.-->
 <div class="app">
-  <app-test *ngIf="true"></app-test>
+  <div class="nav">
+    <div class="title">
+      Ngx-React-Query Examples
+    </div>
+    <nav>
+      <a routerLink="basic" routerLinkActive="active">Basic query</a>
+      <a routerLink="advanced" routerLinkActive="active">Advanced query</a>
+    </nav>
+  </div>
+  <div class="body">
+    <router-outlet></router-outlet>
+  </div>
+  <div class="side">
+    <div class="panel debug">
+      <div class="title">
+        Debug
+      </div>
+      <div class="panel-body">
+        <query-debug></query-debug>
+      </div>
+    </div>
+    <div class="panel info">
+      <div class="title">
+        Queries
+      </div>
+      <div class="panel-body">
+        <query-info></query-info>
+      </div>
+    </div>
+  </div>
 </div>

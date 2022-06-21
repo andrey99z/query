@@ -1,0 +1,75 @@
+.app {
+    display: flex;
+    height: 100vh;
+}
+
+.nav {
+    width: 240px;
+    border-right: 1px solid #eee;
+
+    .title {
+        background-color: #eee;
+        color: #0d2a61;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 1rem;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+
+        a {
+            padding: 1rem;
+            color: #1763f0;
+            text-decoration: none;
+
+            &:hover {
+                background-color: #d1ddf1;
+            }
+
+            &.active {
+                background-color: #1763f0;
+                color: #fff;
+            }
+        }
+    }
+}
+
+.body {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.side {
+    width: 300px;
+    border-left: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+
+    .panel {
+        height: 50vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+
+        .title {
+            color: #000;
+            font-size: 16px;
+            padding: 1rem;
+        }
+
+        .panel-body {
+            overflow: auto;
+            flex-grow: 1;
+        }
+    }
+
+    .debug .title {
+        background-color: #e89c0f;
+    }
+
+    .info .title {
+        background-color: #f0d5a3;
+    }
+}

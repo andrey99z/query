@@ -11,7 +11,7 @@ import { finalize, map } from "rxjs/operators";
 import { UseQueryOptions, UseQueryResult, ObservableEx } from "./types";
 import { parseQueryArgs } from "./utils";
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient();
 
 export function setQueryOptions(options: DefaultOptions) {
   queryClient.setDefaultOptions(options);

@@ -4,7 +4,12 @@ import { lastValueFrom } from "rxjs";
 
 export interface User {
   id: string;
+  createdAt: Date;
+  name: string;
+  avatar: string;
 }
+
+const api = 'https://6145601e38339400175fc5b9.mockapi.io';
 
 @Injectable({
   providedIn: "root"
@@ -15,12 +20,12 @@ export class AppService {
   getUsers() {
     console.log("API: Users");
     return lastValueFrom(this.http
-      .get<User[]>("https://6145601e38339400175fc5b9.mockapi.io/users"))
+      .get<User[]>(`${api}/users`))
   }
 
   getUser(id: any) {
     console.log("API: User", id);
     return lastValueFrom(this.http
-      .get<User>(`https://6145601e38339400175fc5b9.mockapi.io/users/${id}`))
+      .get<User>(`${api}/users/${id}`))
   }
 }

@@ -1,0 +1,9 @@
+<div class="example-title">
+  Basic query
+</div>
+<ul *ngIf="users$ | async as users">
+  <li *ngFor="let user of users.data">
+    {{ user.name }}
+  </li>
+</ul>
+<button (click)="refetch()">refetch</button>
