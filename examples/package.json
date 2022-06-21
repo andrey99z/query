@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-pages": "ng build --output-path ./../../query-examples/docs --base-href /query-examples/",
     "watch": "ng build --watch --configuration development"
   },
   "dependencies": {
