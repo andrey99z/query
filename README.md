@@ -1,4 +1,4 @@
-# Ng-query
+# Ngx-react-query
 
 [react-query](https://tanstack.com/query) for Angular.
 
