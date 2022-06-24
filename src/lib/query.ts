@@ -3,12 +3,11 @@ import {
   QueryObserver,
   notifyManager,
   DefaultOptions,
-  QueryKey,
-  QueryFunction
+  QueryKey
 } from "react-query/core";
 import { BehaviorSubject, combineLatest, defer, isObservable, of } from "rxjs";
 import { finalize, map } from "rxjs/operators";
-import { UseQueryOptions, UseQueryResult, ObservableEx } from "./types";
+import { UseQueryOptions, UseQueryResult, ObservableEx, QueryFunction } from "./types";
 import { parseQueryArgs } from "./utils";
 
 export const queryClient = new QueryClient();

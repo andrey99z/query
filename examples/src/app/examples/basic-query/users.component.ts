@@ -1,11 +1,3 @@
-# Ngx-react-query
-
-[React-query](https://tanstack.com/query) for Angular.
-
-## Basic usage
-
-
-```ts
 import { Component } from "@angular/core";
 import { query } from "ngx-react-query";
 import { AppService, User } from "src/app/app.service";
@@ -24,7 +16,7 @@ import { AppService, User } from "src/app/app.service";
       <button (click)="refetch()">refetch</button>
   `
 })
-export class BasicQueryExampleComponent {
+export class BasicQueryUsersComponent {
 
   users$ = query<User[]>(['users'], () => this.api.getUsers());
 
@@ -33,13 +25,4 @@ export class BasicQueryExampleComponent {
   refetch() {
     this.users$.refetch();
   }
-
 }
-
-```
-
-[More usage examples](https://andrey99z.github.io/query-examples)
-
-## Contributing
-
-All contributions welcome!

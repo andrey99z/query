@@ -18,13 +18,11 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    console.log("API: Users");
     return lastValueFrom(this.http
       .get<User[]>(`${api}/users`))
   }
 
   getUser(id: any) {
-    console.log("API: User", id);
     return lastValueFrom(this.http
       .get<User>(`${api}/users/${id}`))
   }

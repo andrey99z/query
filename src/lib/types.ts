@@ -1,4 +1,4 @@
-import { QueryKey, QueryObserverOptions, QueryObserverResult } from "react-query/core";
+import { QueryFunctionContext, QueryKey, QueryObserverOptions, QueryObserverResult } from "react-query/core";
 import { Observable } from "rxjs";
 
 type UseBaseQueryResult<
@@ -39,6 +39,9 @@ export interface UseQueryOptions<
     TQueryFnData,
     TQueryKey
   > {}
+
+export declare type QueryFunction<T = unknown, TQueryKey extends QueryKey = QueryKey> = 
+  (...params: (any| QueryFunctionContext<TQueryKey>)[]) => T | Promise<T>;
 
 export type ObservableEx<UseQueryResult> = Observable<UseQueryResult> & {
   getCache: () => any;

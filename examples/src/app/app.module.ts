@@ -3,10 +3,11 @@ import { NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule, Routes } from "@angular/router";
-import { BasicQueryExampleComponent } from "./examples/basic-query/basic-query.component";
-import { DebugComponent } from "./debug/debug.component";
-import { InfoComponent } from "./info/info.component";
-import { AdvancedQueryExampleComponent } from "./examples/advanced-query/advanced-query.component";
+import { BasicQueryUsersComponent } from "./examples/basic-query/users.component";
+import { DebugComponent } from "./components/debug/debug.component";
+import { InfoComponent } from "./components/info/info.component";
+import { AdvancedQueryUsersComponent } from "./examples/advanced-query/users.component";
+import { AdvancedQueryUserComponent } from "./examples/advanced-query/user.component";
 
 const routes: Routes = [
   {
@@ -19,11 +20,20 @@ const routes: Routes = [
       },
       {
         path: 'basic',
-        component: BasicQueryExampleComponent
+        component: BasicQueryUsersComponent
       },
       {
-        path: 'advanced',
-        component: AdvancedQueryExampleComponent
+        path: 'advanced',        
+        children: [
+          {
+            path: '',
+            component: AdvancedQueryUsersComponent,
+          },
+          {
+            path: ':id',
+            component: AdvancedQueryUserComponent,
+          }
+        ]
       }
     ]
   }
@@ -34,8 +44,9 @@ const routes: Routes = [
     AppComponent,
     DebugComponent,
     InfoComponent,
-    BasicQueryExampleComponent,
-    AdvancedQueryExampleComponent
+    BasicQueryUsersComponent,
+    AdvancedQueryUsersComponent,
+    AdvancedQueryUserComponent
   ],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
   providers: [],
