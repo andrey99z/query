@@ -2,8 +2,9 @@
 
 [React-query](https://tanstack.com/query) for Angular.
 
-## Basic usage
+🔰 This is work in progress, API likely to change, use at your own risk 🔰
 
+## Example
 
 ```ts
 import { Component } from "@angular/core";
@@ -33,13 +34,28 @@ export class BasicQueryExampleComponent {
   refetch() {
     this.users$.refetch();
   }
-
+  
 }
-
 ```
 
 [More usage examples](https://andrey99z.github.io/query-examples)
 
-## Contributing
+## Query
+Query without parameters, returns an observable:
+```ts
+users$ = query<User[]>(['users'], () => this.api.getUsers());
+```
+Query with observable parameters:
+```ts
+user$ = query<User>(['users', this.route.params.pipe(pluck('id'))], 
+  (id: string) => this.api.getUser(id));
+```
+Refetching the query:
+```ts
+refetch() {
+  this.user$.refetch();
+}
+```
+## Help needed
 
 All contributions welcome!

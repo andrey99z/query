@@ -43,8 +43,10 @@ export interface UseQueryOptions<
 export declare type QueryFunction<T = unknown, TQueryKey extends QueryKey = QueryKey> = 
   (...params: (any| QueryFunctionContext<TQueryKey>)[]) => T | Promise<T>;
 
-export type ObservableEx<UseQueryResult> = Observable<UseQueryResult> & {
-  getCache: () => any;
-  refetch: () => void;
-  getData: () => any;
+export type QueryResult<TData = unknown, TError = unknown> = 
+  Observable<UseQueryResult<TData, TError>> & {
+    getQuery: () => UseQueryResult<TData, TError>,
+    getData: () => TData | undefined;
+    refetch: () => void;
+    remove: () => void;
 };

@@ -5,9 +5,9 @@ import {
   DefaultOptions,
   QueryKey
 } from "react-query/core";
-import { BehaviorSubject, combineLatest, defer, isObservable, of } from "rxjs";
+import { BehaviorSubject, combineLatest, defer, isObservable, Observable, of } from "rxjs";
 import { finalize, map } from "rxjs/operators";
-import { UseQueryOptions, UseQueryResult, ObservableEx, QueryFunction } from "./types";
+import { UseQueryOptions, UseQueryResult, QueryFunction, QueryResult } from "./types";
 import { parseQueryArgs } from "./utils";
 
 export const queryClient = new QueryClient();
@@ -23,7 +23,7 @@ export function query<
   TQueryKey extends QueryKey = QueryKey
 >(
   options: UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>
-): ObservableEx<UseQueryResult<TData, TError>>;
+): QueryResult<TData, TError>;
 export function query<
   TQueryFnData = unknown,
   TError = unknown,
@@ -35,7 +35,7 @@ export function query<
     UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     "queryKey"
   >
-): ObservableEx<UseQueryResult<TData, TError>>;
+): QueryResult<TData, TError>;
 export function query<
   TQueryFnData = unknown,
   TError = unknown,
@@ -48,7 +48,7 @@ export function query<
     UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
     "queryKey" | "queryFn"
   >
-): ObservableEx<UseQueryResult<TData, TError>>;
+): QueryResult<TData, TError>;
 export function query<
   TQueryFnData,
   TError,
@@ -60,7 +60,7 @@ export function query<
     | QueryFunction<TQueryFnData, TQueryKey>
     | UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>,
   arg3?: UseQueryOptions<TQueryFnData, TError, TData, TQueryKey>
-): ObservableEx<UseQueryResult<TData, TError>> {
+): QueryResult<TData, TError> {
   const parsedOptions = parseQueryArgs(arg1, arg2, arg3);
 
   // we want to allow query parameters to be observables
@@ -76,10 +76,10 @@ export function query<
   // https://github.com/TanStack/query/blob/beta/src/reactjs/useBaseQuery.ts
 
   // create internal source for our observable, starting off with 'idle'
-  const source$ = new BehaviorSubject<UseQueryResult<TData>>({
+  const source$ = new BehaviorSubject<UseQueryResult<TData, TError>>({
     status: "idle",
     data: undefined
-  } as unknown as UseQueryResult<TData>);
+  } as unknown as UseQueryResult<TData, TError>);
 
   // use 'deferred' to create a separate observable for each subscriber
   // this allows us to unsubscribe from QueryObserver
@@ -139,13 +139,12 @@ export function query<
         if (subscription) subscription.unsubscribe();
       })
     );
-  }) as ObservableEx<UseQueryResult<TData, TError>>;
+  }) as QueryResult<TData, TError>;
 
-  // dirty hack to return these useful functions together with observable
-  // it works but hopefully there is better way
+  deferred.getQuery = () => source$.value;
   deferred.getData = () => source$.value.data;
-  deferred.getCache = () => queryClient.getQueryCache().getAll();
   deferred.refetch = () => source$.value.refetch();
+  deferred.remove = () => source$.value.remove();
 
   return deferred;
 }
