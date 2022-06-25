@@ -3,11 +3,13 @@ import { NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule, Routes } from "@angular/router";
-import { BasicQueryUsersComponent } from "./examples/basic-query/users.component";
-import { DebugComponent } from "./components/debug/debug.component";
+import { BasicQueryUsersComponent } from "./examples/basic-query/example.component";
+import { LogComponent } from "./components/log/log.component";
 import { InfoComponent } from "./components/info/info.component";
-import { AdvancedQueryUsersComponent } from "./examples/advanced-query/users.component";
-import { AdvancedQueryUserComponent } from "./examples/advanced-query/user.component";
+import { AdvancedQueryUsersComponent } from "./examples/url-params/users.component";
+import { AdvancedQueryUserComponent } from "./examples/url-params/user.component";
+import { MultipleObserversComponent } from "./examples/multiple-observers/example.component";
+import { MasterDetailQueryComponent } from "./examples/master-detail-query/example.component";
 
 const routes: Routes = [
   {
@@ -23,7 +25,7 @@ const routes: Routes = [
         component: BasicQueryUsersComponent
       },
       {
-        path: 'advanced',        
+        path: 'url-params',        
         children: [
           {
             path: '',
@@ -34,7 +36,15 @@ const routes: Routes = [
             component: AdvancedQueryUserComponent,
           }
         ]
-      }
+      },
+      {
+        path: 'multiple-observers',
+        component: MultipleObserversComponent
+      },
+      {
+        path: 'master-detail',
+        component: MasterDetailQueryComponent
+      },
     ]
   }
 ]
@@ -42,11 +52,13 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    DebugComponent,
+    LogComponent,
     InfoComponent,
     BasicQueryUsersComponent,
     AdvancedQueryUsersComponent,
-    AdvancedQueryUserComponent
+    AdvancedQueryUserComponent,
+    MultipleObserversComponent,
+    MasterDetailQueryComponent
   ],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
   providers: [],

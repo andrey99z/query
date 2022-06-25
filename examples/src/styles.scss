@@ -16,4 +16,19 @@ body {
     padding: 1rem;
     margin: -1rem;
     margin-bottom: 0;
+
+    a {
+        color: #666;
+        display: inline-block;
+        font-size: 0.8rem;
+        text-decoration: none;
+        border: 1px solid #666;
+        padding: 2px 4px;
+        border-radius: 2px;
+    }
+}
+
+.btns {
+    display: flex;
+    gap: 0.5rem;
 }

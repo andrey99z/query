@@ -5,7 +5,9 @@
     </div>
     <nav>
       <a routerLink="basic" routerLinkActive="active">Basic query</a>
-      <a routerLink="advanced" routerLinkActive="active">Advanced query</a>
+      <a routerLink="url-params" routerLinkActive="active">Query with params</a>
+      <a routerLink="multiple-observers" routerLinkActive="active">Multiple observers</a>
+      <a routerLink="master-detail" routerLinkActive="active">Master-detail queries</a>
     </nav>
   </div>
   <div class="body">
@@ -14,10 +16,11 @@
   <div class="side">
     <div class="panel debug">
       <div class="title">
-        Debug
+        Log
+        <button class="title-btn" (click)="debug.clear()">clear</button>
       </div>
       <div class="panel-body">
-        <query-debug></query-debug>
+        <query-log #debug></query-log>
       </div>
     </div>
     <div class="panel info">

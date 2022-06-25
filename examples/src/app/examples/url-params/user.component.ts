@@ -5,10 +5,11 @@ import { of, pluck, Subject } from "rxjs";
 import { AppService, User } from "src/app/app.service";
 
 @Component({
-  selector: "advanced-query-example",
+  selector: "url-params-example",
   template: `
     <div class="example-title">
-      Advanced query
+      Query with params
+      <a href="https://github.com/andrey99z/query/blob/main/examples/src/app/examples/url-params/user.component.ts" target="_blank">view code</a>
     </div>    
     <div *ngIf="user$ | async as user">
       <p *ngIf="user.data as data">

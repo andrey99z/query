@@ -1,13 +1,11 @@
-import { notifyManager } from "react-query/core";
+import { map } from "rxjs";
 import { Subject } from "rxjs";
 import { queryClient } from "./query";
 
 const source$ = new Subject();
 
-queryClient.getQueryCache().subscribe(notifyManager.batchCalls((state: any) => {
-    if (state.type === 'updated') {
-        source$.next(state.query);
-    }
-}));
+queryClient.getQueryCache().subscribe((event: any) => source$.next(event));
 
-export const queryCache = source$;
+export const queryCache = source$.pipe(
+    map((event: any) => event.query.cache)
+);

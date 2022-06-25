@@ -1,6 +1,6 @@
 {
   "name": "ngx-react-query",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Angular bindings for react-query",
   "author": "andrey99z",
   "repository": {
@@ -22,11 +22,11 @@
     "ng": "ng",
     "build": "ng build",
     "watch": "ng build --watch --configuration development"
-  },  
+  },
   "peerDependencies": {
     "@angular/common": "^13.3.0",
     "@angular/core": "^13.3.0",
-    "react-query": "^4.0.0-beta.23",
+    "react-query": "^3.39.1",
     "rxjs": "^7.5.5"
   },
   "devDependencies": {

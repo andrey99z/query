@@ -2,19 +2,14 @@ import {
   QueryClient,
   QueryObserver,
   notifyManager,
-  DefaultOptions,
   QueryKey
 } from "react-query/core";
-import { BehaviorSubject, combineLatest, defer, isObservable, Observable, of } from "rxjs";
+import { BehaviorSubject, combineLatest, defer, isObservable, of } from "rxjs";
 import { finalize, map } from "rxjs/operators";
 import { UseQueryOptions, UseQueryResult, QueryFunction, QueryResult } from "./types";
 import { parseQueryArgs } from "./utils";
 
 export const queryClient = new QueryClient();
-
-export function setQueryOptions(options: DefaultOptions) {
-  queryClient.setDefaultOptions(options);
-}
 
 export function query<
   TQueryFnData = unknown,

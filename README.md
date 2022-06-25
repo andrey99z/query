@@ -2,7 +2,7 @@
 
 [React-query](https://tanstack.com/query) for Angular.
 
-🔰 This is work in progress, API likely to change, use at your own risk 🔰
+🔰 This is work in progress, API likely to change 🔰
 
 ## Example
 
@@ -40,9 +40,16 @@ export class BasicQueryExampleComponent {
 
 [More usage examples](https://andrey99z.github.io/query-examples)
 
+## Installation
+```
+npm i ngx-react-query
+```
+No further configuration is required.
 ## Query
 Query without parameters, returns an observable:
 ```ts
+import { query } from "ngx-react-query";
+...
 users$ = query<User[]>(['users'], () => this.api.getUsers());
 ```
 Query with observable parameters:
@@ -54,6 +61,21 @@ Refetching the query:
 ```ts
 refetch() {
   this.user$.refetch();
+}
+```
+## Default options
+(optional) Overriding default options:
+```ts
+import { queryClient } from "ngx-react-query";
+...
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    queryClient.setDefaultOptions({
+      queries: {
+        retry: false
+      },
+    })
+  }
 }
 ```
 ## Help needed

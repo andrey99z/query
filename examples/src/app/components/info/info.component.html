@@ -1,5 +1,7 @@
 <div *ngIf="cache$ | async as cache">
   <div class="item" *ngFor="let q of cache.queries">
-    <span class="key">[{{ q.queryKey }}]</span> Observers: {{ q.observers.length }}
-</div>
+    <span class="key">[{{ q.queryKey }}]</span>
+    Observers: {{ q.observers.length }}
+    <span class="status" [style.backgroundColor]="getQueryStatusColor(q)">{{ getQueryStatusLabel(q) }}</span>
+  </div>
 </div>
