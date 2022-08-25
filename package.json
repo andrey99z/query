@@ -26,7 +26,7 @@
   "peerDependencies": {
     "@angular/common": "^13.3.0",
     "@angular/core": "^13.3.0",
-    "react-query": "^3.39.1",
+    "@tanstack/query-core": "^4.2.1",
     "rxjs": "^7.5.5"
   },
   "devDependencies": {

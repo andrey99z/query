@@ -1,4 +1,4 @@
-import { QueryKey, QueryOptions } from "react-query/core";
+import { QueryKey, QueryOptions } from "@tanstack/query-core";
 import { QueryFunction } from "./types";
 
 export function parseQueryArgs<
