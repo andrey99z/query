@@ -20,8 +20,8 @@ export function parseQueryArgs<
   return { ...arg2, queryFn: patchQueryFn(arg2?.queryFn), queryKey: arg1 } as TOptions;
 }
 
-const isQueryKey = (value: any): value is QueryKey => {
-  return typeof value === "string" || Array.isArray(value);
+const isQueryKey = (value: unknown): value is QueryKey => {
+  return Array.isArray(value);
 }
 
 const patchQueryFn = (fn: any) => {

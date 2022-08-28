@@ -43,6 +43,6 @@ export class MasterDetailQueryComponent {
   }
 
   refetchAll() {
-    queryClient.invalidateQueries('users')
+    queryClient.invalidateQueries(['users'])
   }
 }
