@@ -1,16 +1,16 @@
 {
   "name": "ngx-react-query",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Angular bindings for react-query",
   "author": "andrey99z",
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrey99z/ng-query.git"
+    "url": "https://github.com/andrey99z/query.git"
   },
   "bugs": {
-    "url": "https://github.com/andrey99z/ng-query/issues"
+    "url": "https://github.com/andrey99z/query/issues"
   },
-  "homepage": "https://github.com/andrey99z/ng-query",
+  "homepage": "https://github.com/andrey99z/query",
   "keywords": [
     "angular",
     "query",

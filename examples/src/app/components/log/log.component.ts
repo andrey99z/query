@@ -18,6 +18,7 @@ export class LogComponent implements OnInit, AfterViewChecked {
                     key: x.query.queryKey,
                     type: x.type,
                     status: x.query.state.status,
+                    fetchStatus: x.query.state.fetchStatus,
                     fetching: x.query.state.isFetching
                 }
                 this.log = [...this.log, item];

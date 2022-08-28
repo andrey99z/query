@@ -60,10 +60,7 @@ export function query<
 
   // we want to allow query parameters to be observables
   // so that we can create new query when parameters change
-  const queryKeysArray = Array.isArray(parsedOptions.queryKey)
-    ? parsedOptions.queryKey
-    : [parsedOptions.queryKey];
-  const queryKeyObservableArray = queryKeysArray.map((x: any) =>
+  const queryKeyObservableArray = (parsedOptions.queryKey ?? []).map((x: any) =>
     isObservable(x) ? x : of(x)
   );
 
