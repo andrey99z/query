@@ -1,4 +1,4 @@
-import { QueryFunctionContext, QueryKey, QueryObserverOptions, QueryObserverResult } from "react-query/core";
+import { QueryFunctionContext, QueryKey, QueryObserverOptions, QueryObserverResult } from "@tanstack/query-core";
 import { Observable } from "rxjs";
 
 type UseBaseQueryResult<

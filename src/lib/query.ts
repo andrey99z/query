@@ -3,7 +3,7 @@ import {
   QueryObserver,
   notifyManager,
   QueryKey
-} from "react-query/core";
+} from "@tanstack/query-core";
 import { BehaviorSubject, combineLatest, defer, isObservable, of } from "rxjs";
 import { finalize, map } from "rxjs/operators";
 import { UseQueryOptions, UseQueryResult, QueryFunction, QueryResult } from "./types";
