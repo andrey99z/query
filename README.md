@@ -2,7 +2,7 @@
 
 [React-query](https://tanstack.com/query) for Angular.
 
-🔰 This is work in progress, API likely to change 🔰
+Not maintained, please use [TanStack Query](https://tanstack.com/query/latest/docs/framework/angular/overview) instead.
 
 ## Example
 
@@ -78,6 +78,4 @@ export class AppComponent implements OnInit {
   }
 }
 ```
-## Help needed
 
-All contributions welcome!
